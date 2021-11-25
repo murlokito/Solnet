@@ -44,6 +44,11 @@ namespace Solnet.Programs.StakePool.Models
         /// </summary>
         public ulong Numerator;
 
+        /// <summary>
+        /// Deserialize a span of bytes into a <see cref="Fee"/> instance.
+        /// </summary>
+        /// <param name="data">The data to deserialize into the structure.</param>
+        /// <returns>The <see cref="Fee"/> structure.</returns>
         public static Fee Deserialize(ReadOnlySpan<byte> data)
         {
             if (data.Length != Layout.Length)

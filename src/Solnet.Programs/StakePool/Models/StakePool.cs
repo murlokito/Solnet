@@ -10,7 +10,7 @@ namespace Solnet.Programs.StakePool.Models
     /// <summary>
     /// The <see cref="AccountType.StakePool"/> account.
     /// </summary>
-    public class StakePool
+    public class StakePool : StakePoolProgramAccount
     {
         /// <summary>
         /// The layout of the structure.
@@ -22,11 +22,6 @@ namespace Solnet.Programs.StakePool.Models
             /// </summary>
             public const int Length = 0;
         }
-
-        /// <summary>
-        /// Account type, must be StakePool currently
-        /// </summary>
-        public AccountType AccountType;
 
         /// <summary>
         /// Manager authority, allows for updating the staker, manager, and fee account
@@ -160,7 +155,6 @@ namespace Solnet.Programs.StakePool.Models
         public Fee SolanaDepositFee;
 
         /// <summary>
-
         /// Fees paid out to referrers on referred SOL deposits.
         /// Expressed as a percentage (0 - 100) of SOL deposit fees.
         /// i.e. `sol_deposit_fee`% of SOL deposited is collected as deposit fees for every deposit
@@ -194,6 +188,11 @@ namespace Solnet.Programs.StakePool.Models
         /// </summary>
         public ulong LastEpochTotalLamports;
 
+        /// <summary>
+        /// Deserialize a span of bytes into a <see cref="StakePool"/> instance.
+        /// </summary>
+        /// <param name="data">The data to deserialize into the structure.</param>
+        /// <returns>The <see cref="StakePool"/> structure.</returns>
         public static StakePool Deserialize(ReadOnlySpan<byte> data)
         {
             if (data.Length != Layout.Length)
