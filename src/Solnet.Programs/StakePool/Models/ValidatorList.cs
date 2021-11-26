@@ -90,18 +90,19 @@ namespace Solnet.Programs.StakePool.Models
         /// <returns>The <see cref="ValidatorList"/> structure.</returns>
         public static ValidatorList Deserialize(ReadOnlySpan<byte> data)
         {
-            int numValidators = (int) data.GetU32(Layout.ValidatorsOffset);
+            int numValidators = (int)data.GetU32(Layout.ValidatorsOffset);
             List<ValidatorStakeInfo> validators = new(numValidators);
 
-            for(int i = 0; i < numValidators; i++)
+            for (int i = 0; i < numValidators; i++)
             {
-                ValidatorStakeInfo validator = ValidatorStakeInfo.Deserialize
-
+                ValidatorStakeInfo validator = ValidatorStakeInfo.Deserialize(
+                    data.Slice(Layout.ValidatorsOffset + sizeof(uint) * i, ValidatorStakeInfo.Layout.Length));
+                validators.Add(validator);
             }
 
             return new ValidatorList
             {
-                Header = ValidatorListHeader.Deserialize(data.Slice(Layout.HeaderOffset, ValidatorListHeader.ExtraLayout.Length),
+                Header = ValidatorListHeader.Deserialize(data.Slice(Layout.HeaderOffset, ValidatorListHeader.ExtraLayout.Length)),
                 Validators = validators
             };
         }

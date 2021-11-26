@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solnet.Programs.StakePool.Models
+namespace Solnet.Programs.StakePool.Enums
 {
     /// <summary>
     /// The type of fees that can be set on the stake pool
@@ -12,7 +12,7 @@ namespace Solnet.Programs.StakePool.Models
     public enum FeeType : byte
     {
         /// Referral fees for SOL deposits
-        SolReferral = 0,
+        SolanaReferral = 0,
         /// Referral fees for stake deposits
         StakeReferral = 1,
         /// Management fee paid per epoch
@@ -20,10 +20,10 @@ namespace Solnet.Programs.StakePool.Models
         /// Stake withdrawal fee
         StakeWithdrawal = 3,
         /// Deposit fee for SOL deposits
-        SolDeposit = 4,
+        SolanaDeposit = 4,
         /// Deposit fee for stake deposits
         StakeDeposit = 5,
         /// SOL withdrawal fee
-        SolWithdrawal = 6,
+        SolanaWithdrawal = 6,
     }
 }

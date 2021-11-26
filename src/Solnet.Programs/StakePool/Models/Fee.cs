@@ -1,4 +1,5 @@
-﻿using Solnet.Programs.Utilities;
+﻿using Solnet.Programs.StakePool.Enums;
+using Solnet.Programs.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,5 +61,33 @@ namespace Solnet.Programs.StakePool.Models
                 Numerator = data.GetU64(Layout.NumeratorOffset),
             };
         }
+    }
+
+    /// <summary>
+    /// Argument for the <see cref="StakePoolProgramInstructions.Values.SetFee"/> instruction.
+    /// </summary>
+    public struct SetFeeArgs
+    {
+        /// <summary>
+        /// The type of fees that can be set on the stake pool.
+        /// </summary>
+        public FeeType FeeType;
+
+        /// <summary>
+        /// The fees, used for:
+        /// <see cref="FeeType.SolanaReferral"/>,
+        /// <see cref="FeeType.StakeReferral"/>,
+        /// </summary>
+        public byte Fee;
+
+        /// <summary>
+        /// The fee structure, used for:
+        /// <see cref="FeeType.Epoch"/>,
+        /// <see cref="FeeType.StakeWithdrawal"/>,
+        /// <see cref="FeeType.SolanaDeposit"/>,
+        /// <see cref="FeeType.StakeDeposit"/>,
+        /// <see cref="FeeType.SolanaWithdrawal"/>
+        /// </summary>
+        public Fee Fees;
     }
 }

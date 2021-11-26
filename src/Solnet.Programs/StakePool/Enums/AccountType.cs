@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solnet.Programs.StakePool.Models
+namespace Solnet.Programs.StakePool.Enums
 {
     /// <summary>
     /// Enum representing the account type managed by the <see cref="StakePoolProgram"/>
